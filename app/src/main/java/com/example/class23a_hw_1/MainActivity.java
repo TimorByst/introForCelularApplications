@@ -56,16 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void delayCrashAnimation() {
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                carSpot[currentCarPos].setVisibility(View.VISIBLE);
-            }
-        }, 2000);
-    }
-
     private void startGame() {
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -82,54 +72,58 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshUI() {
-        checkCrash();
+        if (!checkCrash()) {
+            if (gameManager.isLose()) {
+                Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
 
-        if (gameManager.isLose()) {
-            Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
-            for (ShapeableImageView heart : lives)
-                heart.setVisibility(View.VISIBLE);
-            gameManager.restart();
-        } else {
-
-            for (int i = ROWS - 1; i >= 0; i--) {
-                for (int j = COLS - 1; j >= 0; j--) {
-                    if (obstacles[i][j].getVisibility() == View.VISIBLE) {
-                        if (i != ROWS - 1) {
-                            obstacles[i + 1][j].setVisibility(View.VISIBLE);
+                for (int i = ROWS - 1; i >= 0; i--) {
+                    for (int j = COLS - 1; j >= 0; j--) {
+                        if (obstacles[i][j].getVisibility() == View.VISIBLE) {
+                            if (i != ROWS - 1) {
+                                obstacles[i + 1][j].setVisibility(View.VISIBLE);
+                            }
                         }
+                        obstacles[i][j].setVisibility(View.INVISIBLE);
                     }
-                    obstacles[i][j].setVisibility(View.INVISIBLE);
                 }
-            }
-            obstacles[0][ThreadLocalRandom.current().nextInt(COLS)].setVisibility(View.VISIBLE);
+                obstacles[0][ThreadLocalRandom.current().nextInt(COLS)].setVisibility(View.VISIBLE);
 
-            for (int i = 0; i < COLS; i++) {
-                if (i != currentCarPos) {
-                    carSpot[i].setVisibility(View.INVISIBLE);
-                } else {
-                    carSpot[i].setVisibility(View.VISIBLE);
+                for (int i = 0; i < COLS; i++) {
+                    if (i != currentCarPos) {
+                        carSpot[i].setVisibility(View.INVISIBLE);
+                    } else {
+                        carSpot[i].setVisibility(View.VISIBLE);
+                    }
+                    crashSpot[i].setVisibility(View.INVISIBLE);
                 }
-                crashSpot[i].setVisibility(View.INVISIBLE);
+                for (int i = 0; i < gameManager.getCrashes(); i++)
+                    lives[i].setVisibility(View.INVISIBLE);
             }
-            for (int i = 0; i < gameManager.getCrashes(); i++)
-                lives[i].setVisibility(View.INVISIBLE);
         }
-
     }
 
-    private void checkCrash() {
+    /*Check if a crash happens and return boolean,
+    * if a car and stone are visible at the same location at the same time return true,
+    * else return false*/
+    private boolean checkCrash() {
         if (carSpot[currentCarPos].getVisibility() == View.VISIBLE &&
                 obstacles[CAR_ROW][currentCarPos].getVisibility() == View.VISIBLE) {
             carSpot[currentCarPos].setVisibility(View.INVISIBLE);
             obstacles[CAR_ROW][currentCarPos].setVisibility(View.INVISIBLE);
             crashSpot[currentCarPos].setVisibility(View.VISIBLE);
-            delayCrashAnimation();
             Toast.makeText(this, "Oh no!", Toast.LENGTH_SHORT).show();
             vibrate();
             gameManager.crashed();
+            return true;
         }
+        return false;
     }
 
+    /*Moves the car horizontally,
+    * check if the car can move the desired location
+    * and changes the visibility of the image view.*/
     private void moveCar(int buttonId) {
         if (buttonId == R.id.left_ICN_arrow) {
             if (currentCarPos > 0) {
