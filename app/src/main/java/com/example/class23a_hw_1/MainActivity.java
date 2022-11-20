@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         initGame();
         gameManager = new GameManager(lives.length);
         startGame();
-
     }
 
     private void startGame() {
@@ -71,59 +70,60 @@ public class MainActivity extends AppCompatActivity {
         }, DELAY, DELAY);
     }
 
+    // ------------------------------------ Game Logic Section -------------------------------------
+    /*Resets the screen to display all the icons in the current positions*/
     private void refreshUI() {
         if (!checkCrash()) {
             if (gameManager.isLose()) {
-                Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
+                MySignal.getInstance().frenchToast("Game Over!");
                 finish();
             } else {
-
-                for (int i = ROWS - 1; i >= 0; i--) {
-                    for (int j = COLS - 1; j >= 0; j--) {
-                        if (obstacles[i][j].getVisibility() == View.VISIBLE) {
-                            if (i != ROWS - 1) {
-                                obstacles[i + 1][j].setVisibility(View.VISIBLE);
-                            }
-                        }
-                        obstacles[i][j].setVisibility(View.INVISIBLE);
-                    }
-                }
-                obstacles[0][ThreadLocalRandom.current().nextInt(COLS)].setVisibility(View.VISIBLE);
-
-                for (int i = 0; i < COLS; i++) {
-                    if (i != currentCarPos) {
-                        carSpot[i].setVisibility(View.INVISIBLE);
-                    } else {
-                        carSpot[i].setVisibility(View.VISIBLE);
-                    }
-                    crashSpot[i].setVisibility(View.INVISIBLE);
-                }
-                for (int i = 0; i < gameManager.getCrashes(); i++)
-                    lives[i].setVisibility(View.INVISIBLE);
+                moveObstacles();
+                resetCarVisibility();
+                showLives();
             }
         }
     }
 
     /*Check if a crash happens and return boolean,
-    * if a car and stone are visible at the same location at the same time return true,
-    * else return false*/
+     * if a car and stone are visible at the same location at the same time return true,
+     * else return false*/
     private boolean checkCrash() {
         if (carSpot[currentCarPos].getVisibility() == View.VISIBLE &&
-                obstacles[CAR_ROW][currentCarPos].getVisibility() == View.VISIBLE) {
+                obstacles[CAR_ROW - 1][currentCarPos].getVisibility() == View.VISIBLE) {
             carSpot[currentCarPos].setVisibility(View.INVISIBLE);
-            obstacles[CAR_ROW][currentCarPos].setVisibility(View.INVISIBLE);
+            obstacles[CAR_ROW - 1][currentCarPos].setVisibility(View.INVISIBLE);
             crashSpot[currentCarPos].setVisibility(View.VISIBLE);
-            Toast.makeText(this, "Oh no!", Toast.LENGTH_SHORT).show();
-            vibrate();
+            MySignal.getInstance().frenchToast("Oh no!");
+            MySignal.getInstance().vibrate();
             gameManager.crashed();
             return true;
         }
         return false;
     }
 
+    /*The obstacles move vertically downwards,
+     *starting from ROW-2 (one before the last) and places the current
+     * obstacle in the i+1 position.
+     * the obstacle on the ROW-1 (last) position is set invisible,
+     * the obstacle on the first rows gets a random place horizontally.*/
+    private void moveObstacles() {
+        for (int i = ROWS - 1; i >= 0; i--) {
+            for (int j = COLS - 1; j >= 0; j--) {
+                if (obstacles[i][j].getVisibility() == View.VISIBLE) {
+                    if (i != ROWS - 1) {
+                        obstacles[i + 1][j].setVisibility(View.VISIBLE);
+                    }
+                }
+                obstacles[i][j].setVisibility(View.INVISIBLE);
+            }
+        }
+        obstacles[0][ThreadLocalRandom.current().nextInt(COLS)].setVisibility(View.VISIBLE);
+    }
+
     /*Moves the car horizontally,
-    * check if the car can move the desired location
-    * and changes the visibility of the image view.*/
+     * check if the car can move the desired location
+     * and changes the visibility of the image view.*/
     private void moveCar(int buttonId) {
         if (buttonId == R.id.left_ICN_arrow) {
             if (currentCarPos > 0) {
@@ -138,17 +138,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void vibrate() {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        // Vibrate for 500 milliseconds
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-        } else {
-            //deprecated in API 26
-            v.vibrate(500);
+    /*Resets car visibility to the last car position.
+     * This function is called after the crash animation
+     * to show back the car and hide the crash animation.*/
+    private void resetCarVisibility() {
+        for (int i = 0; i < COLS; i++) {
+            if (i != currentCarPos) {
+                carSpot[i].setVisibility(View.INVISIBLE);
+            } else {
+                carSpot[i].setVisibility(View.VISIBLE);
+            }
+            crashSpot[i].setVisibility(View.INVISIBLE);
         }
     }
 
+    /*Shows the current state of lives*/
+    private void showLives() {
+        for (int i = 0; i < gameManager.getCrashes(); i++)
+            lives[i].setVisibility(View.INVISIBLE);
+    }
+
+    //------------------------------------- Game Setup Section -------------------------------------
+    /*Initializes the game, finds all views, buttons, loads images using Glide,
+     * and sets the initial position of the car and obstacles*/
     private void initGame() {
         findViews();
         loadImages();
