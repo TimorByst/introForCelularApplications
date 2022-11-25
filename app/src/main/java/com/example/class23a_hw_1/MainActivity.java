@@ -3,15 +3,8 @@ package com.example.class23a_hw_1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -39,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private final int COLS = 3;
     /* only relevant when car is allowed to move 1D (horizontally)*/
     private final int CAR_ROW = 5;
-
+    /* The row from which the obstacle start to appear*/
+    private final int OBSTACLE_STARTING_ROW = 0;
+    /* The time intervals which the games updates*/
     private final int DELAY = 1000;
     private int currentCarPos;
     private GameManager gameManager;
@@ -87,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*Check if a crash happens and return boolean,
      * if a car and stone are visible at the same location at the same time return true,
+     * and change the icon to crash animation.
      * else return false*/
     private boolean checkCrash() {
         if (carSpot[currentCarPos].getVisibility() == View.VISIBLE &&
@@ -105,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     /*The obstacles move vertically downwards,
      *starting from ROW-2 (one before the last) and places the current
      * obstacle in the i+1 position.
-     * the obstacle on the ROW-1 (last) position is set invisible,
+     * the obstacle on the ROW-1 (last) position is removed (set invisible),
      * the obstacle on the first rows gets a random place horizontally.*/
     private void moveObstacles() {
         for (int i = ROWS - 1; i >= 0; i--) {
@@ -118,12 +114,12 @@ public class MainActivity extends AppCompatActivity {
                 obstacles[i][j].setVisibility(View.INVISIBLE);
             }
         }
-        obstacles[0][ThreadLocalRandom.current().nextInt(COLS)].setVisibility(View.VISIBLE);
+        obstacles[OBSTACLE_STARTING_ROW][ThreadLocalRandom.current().nextInt(COLS)].setVisibility(View.VISIBLE);
     }
 
     /*Moves the car horizontally,
-     * check if the car can move the desired location
-     * and changes the visibility of the image view.*/
+     * check if the car can move to the desired location
+     * and changes the visibility of the image view accordingly.*/
     private void moveCar(int buttonId) {
         if (buttonId == R.id.left_ICN_arrow) {
             if (currentCarPos > 0) {
@@ -172,9 +168,10 @@ public class MainActivity extends AppCompatActivity {
 
         for (AppCompatImageView car : carSpot)
             car.setVisibility(View.INVISIBLE);
+
         currentCarPos = (int) Math.floor(COLS / 2);
         carSpot[currentCarPos].setVisibility(View.VISIBLE);
-        obstacles[0][currentCarPos].setVisibility(View.VISIBLE);
+        obstacles[OBSTACLE_STARTING_ROW][currentCarPos].setVisibility(View.VISIBLE);
 
         for (AppCompatImageView crash : crashSpot)
             crash.setVisibility(View.INVISIBLE);
