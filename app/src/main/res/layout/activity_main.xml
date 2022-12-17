@@ -1,552 +1,1581 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:background="#E9BCBABA"
-    android:layoutDirection="rtl">
+    android:layoutDirection="rtl"
+    tools:context=".MainActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/main_IMG_lanes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:layoutDirection="rtl"/>
+        android:layoutDirection="rtl"
+        android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layoutDirection="rtl">
+        android:layoutDirection="rtl"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layoutDirection="rtl"
-            >
+            android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
                 android:layoutDirection="rtl"
-                >
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_02"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"
-                    />
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/obstacle_IMG_pos_04"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="18dp"
+                        android:layoutDirection="rtl"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/ic_launcher_background" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/coin_IMG_pos_04"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="18dp"
+                        android:layoutDirection="rtl"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/ic_launcher_background" />
+                </RelativeLayout>
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_01"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_00"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"
-                    />
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layoutDirection="rtl"
-
-            >
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
                 android:layoutDirection="rtl"
-                >
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_12"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/obstacle_IMG_pos_03"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="18dp"
+                        android:layoutDirection="rtl"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/ic_launcher_background" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/coin_IMG_pos_03"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="18dp"
+                        android:layoutDirection="rtl"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/ic_launcher_background" />
+
+                </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layoutDirection="rtl"
-                    />
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_11"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl" />
-            </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_02"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_10"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_02"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
 
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layoutDirection="rtl">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_22"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_21"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_20"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layoutDirection="rtl">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_32"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_31"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_30"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layoutDirection="rtl">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_42"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_41"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layoutDirection="rtl">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_40"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layoutDirection="rtl">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/obstacle_IMG_pos_52"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="20dp"
-                        android:layout_gravity="center"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background"
-                        android:layoutDirection="rtl"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/car_IMG_pos_2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layoutDirection="rtl"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/crash_IMG_pos_2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layoutDirection="rtl"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background" />
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/obstacle_IMG_pos_51"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="20dp"
-                        android:layout_gravity="center"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background"
-                        android:layoutDirection="rtl"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/car_IMG_pos_1"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layoutDirection="rtl"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/crash_IMG_pos_1"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layoutDirection="rtl"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background" />
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layoutDirection="rtl">
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/obstacle_IMG_pos_50"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="20dp"
-                        android:layout_gravity="center"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background"
-                        android:layoutDirection="rtl"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/car_IMG_pos_0"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layoutDirection="rtl"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/crash_IMG_pos_0"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layoutDirection="rtl"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layoutDirection="rtl">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_62"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layoutDirection="rtl">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_61"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background"
-                    android:layoutDirection="rtl"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layoutDirection="rtl">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/obstacle_IMG_pos_60"
-                    android:layout_width="46dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="20dp"
                     android:layoutDirection="rtl"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background" />
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_01"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_01"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_00"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_00"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_14"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_14"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_13"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_13"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_12"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_12"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_11"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_11"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_10"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_10"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_24"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_24"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_23"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_23"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_22"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_22"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_21"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_21"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_20"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_20"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_34"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_34"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_33"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_33"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_32"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="centerInside"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_32"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_31"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_31"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_30"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_30"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_44"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_44"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_43"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_43"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_42"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_42"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_41"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_41"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_40"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_40"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_54"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_54"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_53"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_53"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_52"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_52"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_51"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_51"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_50"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_50"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_64"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_64"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/car_IMG_pos_4"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/crash_IMG_pos_4"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_63"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_63"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/car_IMG_pos_3"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/crash_IMG_pos_3"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_62"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_62"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/car_IMG_pos_2"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/crash_IMG_pos_2"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_61"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_61"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/car_IMG_pos_1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/crash_IMG_pos_1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_60"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_60"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/car_IMG_pos_0"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/crash_IMG_pos_0"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_74"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_74"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_73"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_73"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_72"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_72"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_71"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_71"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/obstacle_IMG_pos_70"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/coin_IMG_pos_70"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="18dp"
+                            android:layoutDirection="rtl"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
     </LinearLayout>
 
@@ -568,8 +1597,8 @@
             android:layout_marginEnd="28dp"
             android:layout_marginBottom="28dp"
             android:backgroundTint="#4AE3B04A"
-            app:icon="@drawable/ic_right"
-            android:layoutDirection="rtl"/>
+            android:layoutDirection="rtl"
+            app:icon="@drawable/ic_right" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/left_ICN_arrow"
@@ -589,12 +1618,13 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="96dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        android:layout_alignParentEnd="true"
-        android:layoutDirection="rtl">
+        android:layoutDirection="rtl"
+        android:orientation="horizontal">
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_heart_IMG_one"
             android:layout_width="0dp"
@@ -602,6 +1632,7 @@
             android:layout_weight="1"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/heart_svgrepo_com" />
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_heart_IMG_two"
             android:layout_width="0dp"
@@ -609,6 +1640,7 @@
             android:layout_weight="1"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/heart_svgrepo_com" />
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_heart_IMG_three"
             android:layout_width="0dp"
@@ -617,6 +1649,21 @@
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/heart_svgrepo_com" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/main_LBL_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="000"
+        android:textSize="30sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/main_LBL_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="000"
+        android:textSize="30sp" />
 
 
 </RelativeLayout>

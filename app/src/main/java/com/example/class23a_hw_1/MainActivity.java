@@ -2,163 +2,244 @@ package com.example.class23a_hw_1;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.ThreadLocalRandom;
-
 public class MainActivity extends AppCompatActivity {
 
+    public interface CallbackTimer {
+        void tick();
+    }
+
+    private MyAccelerometerDetector myAccelerometerDetector;
     private AppCompatImageView main_IMG_lanes;
+    private AppCompatTextView main_LBL_score;
+    private AppCompatTextView main_LBL_distance;
 
     private ExtendedFloatingActionButton left_ICN_arrow;
     private ExtendedFloatingActionButton right_ICN_arrow;
 
     private AppCompatImageView[][] obstacles;
+    private AppCompatImageView[][] coins;
     private AppCompatImageView[] carSpot;
     private AppCompatImageView[] crashSpot;
     private ShapeableImageView[] lives;
 
     /* The number of rows on screen */
-    private final int ROWS = 7;
+    private final int ROWS = 8;
     /* The number of elements in a row */
-    private final int COLS = 3;
+    private final int COLS = 5;
     /* only relevant when car is allowed to move 1D (horizontally)*/
-    private final int CAR_ROW = 5;
+    private final int CAR_ROW = 6;
     /* The row from which the obstacle start to appear*/
-    private final int OBSTACLE_STARTING_ROW = 0;
+    private final int OBJECTS_STARTING_ROW = 0;
+    /* the coin score value */
+    private final int COIN = 10;
     /* The time intervals which the games updates*/
-    private final int DELAY = 1000;
+    private final int[] gameSpeed = {1000, 750, 500};
+    /* An index to indicate in which speed the game is currently running */
+    private int currentGameSpeed = 0;
+    /* How high the phone need to bi tilted upwards to register a shift in speed */
+    private float speedSensitivity = 4.0f;
+    /* Determine how significant the tilt on the X-axis should be
+     in order to register as a shift to that lane */
+    private final float CENTER_LANE_SENSITIVITY = 0.5f;
+    private final float LEFT_LANE_SENSITIVITY = 2;
+    private final float LEFTEST_LANE_SENSITIVITY = 4;
+    private final float RIGHT_LANE_SENSITIVITY = -2;
+    private final float RIGHTEST_LANE_SENSITIVITY = -4;
+    private final int OFFSET = 1;
+    /* For convenience represents each lane as a number in the car row */
+    private final int LEFTEST = 0;
+    private final int LEFT = 1;
+    private final int CENTER = 2;
+    private final int RIGHT = 3;
+    private final int RIGHTEST = 4;
+    private int randomObstacleStartingPosition;
+    private int randomCoinStartingColumn;
+    private int currentCoinRow = 0;
     private int currentCarPos;
+    /* Flag to indicate when to stop and start timer onResume and onPause methods */
+    private boolean firstStart = true;
+    /* Flag to indicate the moveCar logic */
+    private boolean moveCarByButtons;
+    private boolean moveCarByButtonsFast;
+    private MyTicker myTicker;
     private GameManager gameManager;
-    private Timer timer;
+    CallbackTimer callbackTimer;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent previous = getIntent();
+        moveCarByButtons = previous.getBooleanExtra("PlayMode", moveCarByButtons);
+        moveCarByButtonsFast = previous.getBooleanExtra("GameSpeed", moveCarByButtonsFast);
+
         initGame();
-        gameManager = new GameManager(lives.length);
-        startGame();
+        gameManager = new GameManager();
+        gameManager.init();
+        gameManager.setContext(this)
+                .setLives(lives.length)
+                .setRows(ROWS)
+                .setCols(COLS)
+                .setCarRow(CAR_ROW)
+                .setCoinValue(COIN);
+
+        runTimer();
     }
 
-    private void startGame() {
-        timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!moveCarByButtons) {
+            myAccelerometerDetector.start();
+        }
+        if (!myTicker.isRunning() && !firstStart) {
+            myTicker.start(gameSpeed[currentGameSpeed]);
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (!moveCarByButtons) {
+            myAccelerometerDetector.stop();
+        }
+        if (myTicker.isRunning()) {
+            myTicker.stop();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gameManager.destroy();
+    }
+
+    private MyAccelerometerDetector.Callback_moveCar
+            callback_moveCar = new MyAccelerometerDetector.Callback_moveCar() {
+        @Override
+        public void moveCar(float pivot, float currentPos, float lastPos) {
+            int move_to = currentCarPos;
+            boolean skip = false;
+            if (currentPos < RIGHTEST_LANE_SENSITIVITY
+                    && currentCarPos != RIGHTEST) {
+                move_to = RIGHTEST;
+            } else if (RIGHTEST_LANE_SENSITIVITY < currentPos
+                    && currentPos < RIGHT_LANE_SENSITIVITY
+                    && currentCarPos != RIGHT) {
+                move_to = RIGHT;
+            } else if (Math.abs(currentPos) < Math.abs(CENTER_LANE_SENSITIVITY)
+                    && currentCarPos != CENTER) {
+                move_to = CENTER;
+            } else if (LEFT_LANE_SENSITIVITY < currentPos
+                    && currentPos < LEFTEST_LANE_SENSITIVITY
+                    && currentCarPos != LEFT) {
+                move_to = LEFT;
+            } else if (LEFTEST_LANE_SENSITIVITY < currentPos
+                    && currentCarPos != LEFTEST) {
+                move_to = LEFTEST;
+            } else {
+                //Don't move the car
+                skip = true;
+            }
+            if (!skip) {
+                gameManager.moveCar(currentCarPos, move_to, carSpot, moveCarByButtons);
+                currentCarPos = move_to;
+            }
+            Log.d("pttt", "Tilt Value: " + currentPos);
+        }
+
+        @Override
+        public void changeSpeed(float startingValue, float currentValue) {
+
+            /*Log.d("pttt", "Yaw Value: " + currentValue);*/
+        }
+    };
+
+    private void runTimer() {
+        callbackTimer = new CallbackTimer() {
             @Override
-            public void run() {
+            public void tick() {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        refreshUI();
+                        ticker();
                     }
                 });
             }
-        }, DELAY, DELAY);
+        };
+        myTicker = new MyTicker(callbackTimer);
+        if (!myTicker.isRunning() && firstStart) {
+            myTicker.start(gameSpeed[currentGameSpeed]);
+            firstStart = false;
+        }
+    }
+
+    private void ticker() {
+        refreshUI();
+        main_LBL_distance.setText(Integer.parseInt(main_LBL_distance.getText().toString()) + 1 + "");
     }
 
     // ------------------------------------ Game Logic Section -------------------------------------
     /*Resets the screen to display all the icons in the current positions*/
     private void refreshUI() {
-        if (!checkCrash()) {
+        if(!gameManager.checkCollisions(currentCarPos, carSpot, crashSpot, obstacles, coins, main_LBL_score)) {
             if (gameManager.isLose()) {
                 MySignal.getInstance().frenchToast("Game Over!");
-                finish();
+                //finish();
+                gameManager.restart();
             } else {
-                moveObstacles();
-                resetCarVisibility();
+                gameManager.resetCarVisibility(currentCarPos, carSpot, crashSpot);
+                gameManager.moveObstacles(obstacles);
+                gameManager.moveCoins(coins);
                 showLives();
             }
         }
     }
 
-    /*Check if a crash happens and return boolean,
-     * if a car and stone are visible at the same location at the same time return true,
-     * and change the icon to crash animation.
-     * else return false*/
-    private boolean checkCrash() {
-        if (carSpot[currentCarPos].getVisibility() == View.VISIBLE &&
-                obstacles[CAR_ROW - 1][currentCarPos].getVisibility() == View.VISIBLE) {
-            carSpot[currentCarPos].setVisibility(View.INVISIBLE);
-            obstacles[CAR_ROW - 1][currentCarPos].setVisibility(View.INVISIBLE);
-            crashSpot[currentCarPos].setVisibility(View.VISIBLE);
-            MySignal.getInstance().frenchToast("Oh no!");
-            MySignal.getInstance().vibrate();
-            gameManager.crashed();
-            return true;
-        }
-        return false;
-    }
-
-    /*The obstacles move vertically downwards,
-     *starting from ROW-2 (one before the last) and places the current
-     * obstacle in the i+1 position.
-     * the obstacle on the ROW-1 (last) position is removed (set invisible),
-     * the obstacle on the first rows gets a random place horizontally.*/
-    private void moveObstacles() {
-        for (int i = ROWS - 1; i >= 0; i--) {
-            for (int j = COLS - 1; j >= 0; j--) {
-                if (obstacles[i][j].getVisibility() == View.VISIBLE) {
-                    if (i != ROWS - 1) {
-                        obstacles[i + 1][j].setVisibility(View.VISIBLE);
-                    }
-                }
-                obstacles[i][j].setVisibility(View.INVISIBLE);
-            }
-        }
-        obstacles[OBSTACLE_STARTING_ROW][ThreadLocalRandom.current().nextInt(COLS)].setVisibility(View.VISIBLE);
-    }
-
-    /*Moves the car horizontally,
-     * check if the car can move to the desired location
-     * and changes the visibility of the image view accordingly.*/
-    private void moveCar(int buttonId) {
-        if (buttonId == R.id.left_ICN_arrow) {
-            if (currentCarPos > 0) {
-                carSpot[currentCarPos--].setVisibility(View.INVISIBLE);
-                carSpot[currentCarPos].setVisibility(View.VISIBLE);
-            }
-        } else {
-            if (currentCarPos < COLS - 1) {
-                carSpot[currentCarPos++].setVisibility(View.INVISIBLE);
-                carSpot[currentCarPos].setVisibility(View.VISIBLE);
-            }
-        }
-    }
-
-    /*Resets car visibility to the last car position.
-     * This function is called after the crash animation
-     * to show back the car and hide the crash animation.*/
-    private void resetCarVisibility() {
-        for (int i = 0; i < COLS; i++) {
-            if (i != currentCarPos) {
-                carSpot[i].setVisibility(View.INVISIBLE);
-            } else {
-                carSpot[i].setVisibility(View.VISIBLE);
-            }
-            crashSpot[i].setVisibility(View.INVISIBLE);
-        }
-    }
-
-    /*Shows the current state of lives*/
+    /**
+     * Shows the current state of lives
+     */
     private void showLives() {
         for (int i = 0; i < gameManager.getCrashes(); i++)
             lives[i].setVisibility(View.INVISIBLE);
     }
 
     //------------------------------------- Game Setup Section -------------------------------------
-    /*Initializes the game, finds all views, buttons, loads images using Glide,
-     * and sets the initial position of the car and obstacles*/
+
+    /**
+     * Initializes the game, finds all views, buttons, loads images using Glide,
+     * and sets the initial position of the car and obstacles
+     */
     private void initGame() {
         findViews();
+        main_LBL_score.setText("0");
+        main_LBL_distance.setText("0");
+
         loadImages();
 
         for (int i = 0; i < ROWS; i++) {
@@ -166,18 +247,32 @@ public class MainActivity extends AppCompatActivity {
                 obstacle.setVisibility(View.INVISIBLE);
         }
 
+        for (int i = 0; i < ROWS; i++) {
+            for (AppCompatImageView coins : coins[i])
+                coins.setVisibility(View.INVISIBLE);
+        }
+
+
         for (AppCompatImageView car : carSpot)
             car.setVisibility(View.INVISIBLE);
 
         currentCarPos = (int) Math.floor(COLS / 2);
         carSpot[currentCarPos].setVisibility(View.VISIBLE);
-        obstacles[OBSTACLE_STARTING_ROW][currentCarPos].setVisibility(View.VISIBLE);
+        obstacles[OBJECTS_STARTING_ROW][currentCarPos].setVisibility(View.VISIBLE);
 
         for (AppCompatImageView crash : crashSpot)
             crash.setVisibility(View.INVISIBLE);
 
-        initButton(left_ICN_arrow);
-        initButton(right_ICN_arrow);
+        if (moveCarByButtons) {
+            initButton(left_ICN_arrow);
+            initButton(right_ICN_arrow);
+            if(moveCarByButtonsFast){
+                currentGameSpeed = gameSpeed.length - 1;
+            }
+        } else {
+            myAccelerometerDetector = new MyAccelerometerDetector(this, callback_moveCar);
+            myAccelerometerDetector.start();
+        }
 
     }
 
@@ -185,7 +280,12 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                moveCar(button.getId());
+                gameManager.moveCar(currentCarPos, button.getId(), carSpot, moveCarByButtons);
+                if (button.getId() == left_ICN_arrow.getId() && currentCarPos > 0) {
+                    currentCarPos--;
+                } else if (currentCarPos < COLS - 1) {
+                    currentCarPos++;
+                }
             }
         });
     }
@@ -195,8 +295,11 @@ public class MainActivity extends AppCompatActivity {
         right_ICN_arrow = findViewById(R.id.right_ICN_arrow);
 
         main_IMG_lanes = findViewById(R.id.main_IMG_lanes);
+        main_LBL_score = findViewById(R.id.main_LBL_score);
+        main_LBL_distance = findViewById(R.id.main_LBL_distance);
 
         findObstacles();
+        findCoins();
         findCars();
         findCrashes();
         findHearts();
@@ -207,41 +310,129 @@ public class MainActivity extends AppCompatActivity {
                 {findViewById(R.id.obstacle_IMG_pos_00),
                         findViewById(R.id.obstacle_IMG_pos_01),
                         findViewById(R.id.obstacle_IMG_pos_02),
+                        findViewById(R.id.obstacle_IMG_pos_03),
+                        findViewById(R.id.obstacle_IMG_pos_04),
                 },
 
                 {findViewById(R.id.obstacle_IMG_pos_10),
                         findViewById(R.id.obstacle_IMG_pos_11),
                         findViewById(R.id.obstacle_IMG_pos_12),
+                        findViewById(R.id.obstacle_IMG_pos_13),
+                        findViewById(R.id.obstacle_IMG_pos_14),
 
                 },
 
                 {findViewById(R.id.obstacle_IMG_pos_20),
                         findViewById(R.id.obstacle_IMG_pos_21),
                         findViewById(R.id.obstacle_IMG_pos_22),
+                        findViewById(R.id.obstacle_IMG_pos_23),
+                        findViewById(R.id.obstacle_IMG_pos_24),
                 },
 
                 {
                         findViewById(R.id.obstacle_IMG_pos_30),
                         findViewById(R.id.obstacle_IMG_pos_31),
                         findViewById(R.id.obstacle_IMG_pos_32),
+                        findViewById(R.id.obstacle_IMG_pos_33),
+                        findViewById(R.id.obstacle_IMG_pos_34),
                 },
 
                 {
                         findViewById(R.id.obstacle_IMG_pos_40),
                         findViewById(R.id.obstacle_IMG_pos_41),
                         findViewById(R.id.obstacle_IMG_pos_42),
+                        findViewById(R.id.obstacle_IMG_pos_43),
+                        findViewById(R.id.obstacle_IMG_pos_44),
                 },
 
                 {
                         findViewById(R.id.obstacle_IMG_pos_50),
                         findViewById(R.id.obstacle_IMG_pos_51),
                         findViewById(R.id.obstacle_IMG_pos_52),
+                        findViewById(R.id.obstacle_IMG_pos_53),
+                        findViewById(R.id.obstacle_IMG_pos_54),
                 },
 
                 {
                         findViewById(R.id.obstacle_IMG_pos_60),
                         findViewById(R.id.obstacle_IMG_pos_61),
                         findViewById(R.id.obstacle_IMG_pos_62),
+                        findViewById(R.id.obstacle_IMG_pos_63),
+                        findViewById(R.id.obstacle_IMG_pos_64),
+                },
+
+                {
+                        findViewById(R.id.obstacle_IMG_pos_70),
+                        findViewById(R.id.obstacle_IMG_pos_71),
+                        findViewById(R.id.obstacle_IMG_pos_72),
+                        findViewById(R.id.obstacle_IMG_pos_73),
+                        findViewById(R.id.obstacle_IMG_pos_74),
+                },
+        };
+    }
+
+    private void findCoins() {
+        coins = new AppCompatImageView[][]{
+                {findViewById(R.id.coin_IMG_pos_00),
+                        findViewById(R.id.coin_IMG_pos_01),
+                        findViewById(R.id.coin_IMG_pos_02),
+                        findViewById(R.id.coin_IMG_pos_03),
+                        findViewById(R.id.coin_IMG_pos_04),
+                },
+
+                {findViewById(R.id.coin_IMG_pos_10),
+                        findViewById(R.id.coin_IMG_pos_11),
+                        findViewById(R.id.coin_IMG_pos_12),
+                        findViewById(R.id.coin_IMG_pos_13),
+                        findViewById(R.id.coin_IMG_pos_14),
+
+                },
+
+                {findViewById(R.id.coin_IMG_pos_20),
+                        findViewById(R.id.coin_IMG_pos_21),
+                        findViewById(R.id.coin_IMG_pos_22),
+                        findViewById(R.id.coin_IMG_pos_23),
+                        findViewById(R.id.coin_IMG_pos_24),
+                },
+
+                {
+                        findViewById(R.id.coin_IMG_pos_30),
+                        findViewById(R.id.coin_IMG_pos_31),
+                        findViewById(R.id.coin_IMG_pos_32),
+                        findViewById(R.id.coin_IMG_pos_33),
+                        findViewById(R.id.coin_IMG_pos_34),
+                },
+
+                {
+                        findViewById(R.id.coin_IMG_pos_40),
+                        findViewById(R.id.coin_IMG_pos_41),
+                        findViewById(R.id.coin_IMG_pos_42),
+                        findViewById(R.id.coin_IMG_pos_43),
+                        findViewById(R.id.coin_IMG_pos_44),
+                },
+
+                {
+                        findViewById(R.id.coin_IMG_pos_50),
+                        findViewById(R.id.coin_IMG_pos_51),
+                        findViewById(R.id.coin_IMG_pos_52),
+                        findViewById(R.id.coin_IMG_pos_53),
+                        findViewById(R.id.coin_IMG_pos_54),
+                },
+
+                {
+                        findViewById(R.id.coin_IMG_pos_60),
+                        findViewById(R.id.coin_IMG_pos_61),
+                        findViewById(R.id.coin_IMG_pos_62),
+                        findViewById(R.id.coin_IMG_pos_63),
+                        findViewById(R.id.coin_IMG_pos_64),
+                },
+
+                {
+                        findViewById(R.id.coin_IMG_pos_70),
+                        findViewById(R.id.coin_IMG_pos_71),
+                        findViewById(R.id.coin_IMG_pos_72),
+                        findViewById(R.id.coin_IMG_pos_73),
+                        findViewById(R.id.coin_IMG_pos_74),
                 },
         };
     }
@@ -251,6 +442,8 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.car_IMG_pos_0),
                 findViewById(R.id.car_IMG_pos_1),
                 findViewById(R.id.car_IMG_pos_2),
+                findViewById(R.id.car_IMG_pos_3),
+                findViewById(R.id.car_IMG_pos_4),
         };
     }
 
@@ -259,6 +452,8 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.crash_IMG_pos_0),
                 findViewById(R.id.crash_IMG_pos_1),
                 findViewById(R.id.crash_IMG_pos_2),
+                findViewById(R.id.crash_IMG_pos_3),
+                findViewById(R.id.crash_IMG_pos_4),
         };
     }
 
@@ -275,6 +470,7 @@ public class MainActivity extends AppCompatActivity {
         loadCarImg();
         loadCrashImg();
         loadObstaclesImg();
+        loadCoinsImg();
     }
 
     private void loadLandscape() {
@@ -284,14 +480,13 @@ public class MainActivity extends AppCompatActivity {
                 .into(main_IMG_lanes);
     }
 
-    /*Binds images and views in a row
+    /**
+     * Binds images and views in a row
      * note that this function deals with AppCompactImageView
      *
-     * @param cols number of elements in a row.
      * @param imageResource the image resource to bind.
-     * @param view the view to bind the image to.
-     * @return an array of views.
-     * */
+     * @param view          the view to bind the image to.
+     */
     private void loadRowOfImages(int imageResource, AppCompatImageView[] view) {
         for (int i = 0; i < COLS; i++) {
             Glide
@@ -314,4 +509,8 @@ public class MainActivity extends AppCompatActivity {
             loadRowOfImages(R.drawable.granite_img, obstacles[i]);
     }
 
+    private void loadCoinsImg() {
+        for (int i = 0; i < ROWS; i++)
+            loadRowOfImages(R.drawable.bit_coin, coins[i]);
+    }
 }
