@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
-public class MainActivity extends AppCompatActivity {
+public class ActivityGame extends AppCompatActivity {
 
     public interface CallbackTimer {
         void tick();
@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
     private final int[] gameSpeed = {1000, 750, 500};
     /* An index to indicate in which speed the game is currently running */
     private int currentGameSpeed = 0;
-    /* How high the phone need to bi tilted upwards to register a shift in speed */
-    private float speedSensitivity = 4.0f;
     /* Determine how significant the tilt on the X-axis should be
      in order to register as a shift to that lane */
     private final float CENTER_LANE_SENSITIVITY = 0.5f;
@@ -63,14 +61,13 @@ public class MainActivity extends AppCompatActivity {
     private final int CENTER = 2;
     private final int RIGHT = 3;
     private final int RIGHTEST = 4;
-    private int randomObstacleStartingPosition;
-    private int randomCoinStartingColumn;
-    private int currentCoinRow = 0;
+    /* Index that indicates the current car position */
     private int currentCarPos;
     /* Flag to indicate when to stop and start timer onResume and onPause methods */
     private boolean firstStart = true;
     /* Flag to indicate the moveCar logic */
     private boolean moveCarByButtons;
+    /* The game speed the player chose to play Fast/Slow*/
     private boolean moveCarByButtonsFast;
     private MyTicker myTicker;
     private GameManager gameManager;
@@ -87,17 +84,47 @@ public class MainActivity extends AppCompatActivity {
         moveCarByButtonsFast = previous.getBooleanExtra("GameSpeed", moveCarByButtonsFast);
 
         initGame();
-        gameManager = new GameManager();
-        gameManager.init();
-        gameManager.setContext(this)
-                .setLives(lives.length)
-                .setRows(ROWS)
-                .setCols(COLS)
-                .setCarRow(CAR_ROW)
-                .setCoinValue(COIN);
-
         runTimer();
     }
+
+    private MyAccelerometerDetector.Callback_moveCar
+            callback_moveCar = new MyAccelerometerDetector.Callback_moveCar() {
+        @Override
+        public void moveCar(float pivot, float currentPos, float lastPos) {
+            int move_to = currentCarPos;
+            boolean skip = false;
+            if (currentPos < RIGHTEST_LANE_SENSITIVITY
+                    && currentCarPos != RIGHTEST) {
+                move_to = RIGHTEST;
+            } else if (RIGHTEST_LANE_SENSITIVITY < currentPos
+                    && currentPos < RIGHT_LANE_SENSITIVITY
+                    && currentCarPos != RIGHT) {
+                move_to = RIGHT;
+            } else if (Math.abs(currentPos) < Math.abs(CENTER_LANE_SENSITIVITY)
+                    && currentCarPos != CENTER) {
+                move_to = CENTER;
+            } else if (LEFT_LANE_SENSITIVITY < currentPos
+                    && currentPos < LEFTEST_LANE_SENSITIVITY
+                    && currentCarPos != LEFT) {
+                move_to = LEFT;
+            } else if (LEFTEST_LANE_SENSITIVITY < currentPos
+                    && currentCarPos != LEFTEST) {
+                move_to = LEFTEST;
+            } else {
+                //Don't move the car
+                skip = true;
+            }
+            if (!skip) {
+                gameManager.moveCar(currentCarPos, move_to, carSpot, moveCarByButtons);
+                currentCarPos = move_to;
+            }
+        }
+
+        @Override
+        public void changeSpeed(float startingValue, float currentValue) {
+            /* Not implemented */
+        }
+    };
 
     @Override
     protected void onResume() {
@@ -139,47 +166,6 @@ public class MainActivity extends AppCompatActivity {
         gameManager.destroy();
     }
 
-    private MyAccelerometerDetector.Callback_moveCar
-            callback_moveCar = new MyAccelerometerDetector.Callback_moveCar() {
-        @Override
-        public void moveCar(float pivot, float currentPos, float lastPos) {
-            int move_to = currentCarPos;
-            boolean skip = false;
-            if (currentPos < RIGHTEST_LANE_SENSITIVITY
-                    && currentCarPos != RIGHTEST) {
-                move_to = RIGHTEST;
-            } else if (RIGHTEST_LANE_SENSITIVITY < currentPos
-                    && currentPos < RIGHT_LANE_SENSITIVITY
-                    && currentCarPos != RIGHT) {
-                move_to = RIGHT;
-            } else if (Math.abs(currentPos) < Math.abs(CENTER_LANE_SENSITIVITY)
-                    && currentCarPos != CENTER) {
-                move_to = CENTER;
-            } else if (LEFT_LANE_SENSITIVITY < currentPos
-                    && currentPos < LEFTEST_LANE_SENSITIVITY
-                    && currentCarPos != LEFT) {
-                move_to = LEFT;
-            } else if (LEFTEST_LANE_SENSITIVITY < currentPos
-                    && currentCarPos != LEFTEST) {
-                move_to = LEFTEST;
-            } else {
-                //Don't move the car
-                skip = true;
-            }
-            if (!skip) {
-                gameManager.moveCar(currentCarPos, move_to, carSpot, moveCarByButtons);
-                currentCarPos = move_to;
-            }
-            Log.d("pttt", "Tilt Value: " + currentPos);
-        }
-
-        @Override
-        public void changeSpeed(float startingValue, float currentValue) {
-
-            /*Log.d("pttt", "Yaw Value: " + currentValue);*/
-        }
-    };
-
     private void runTimer() {
         callbackTimer = new CallbackTimer() {
             @Override
@@ -210,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         if(!gameManager.checkCollisions(currentCarPos, carSpot, crashSpot, obstacles, coins, main_LBL_score)) {
             if (gameManager.isLose()) {
                 MySignal.getInstance().frenchToast("Game Over!");
-                //finish();
+                loadRecordsPage();
                 gameManager.restart();
             } else {
                 gameManager.resetCarVisibility(currentCarPos, carSpot, crashSpot);
@@ -219,6 +205,11 @@ public class MainActivity extends AppCompatActivity {
                 showLives();
             }
         }
+    }
+
+    private void loadRecordsPage() {
+        Intent intent = new Intent(this, ActivityRecords.class);
+        startActivity(intent);
     }
 
     /**
@@ -262,6 +253,15 @@ public class MainActivity extends AppCompatActivity {
 
         for (AppCompatImageView crash : crashSpot)
             crash.setVisibility(View.INVISIBLE);
+
+        gameManager = new GameManager();
+        gameManager.init();
+        gameManager.setContext(this)
+                .setLives(lives.length)
+                .setRows(ROWS)
+                .setCols(COLS)
+                .setCarRow(CAR_ROW)
+                .setCoinValue(COIN);
 
         if (moveCarByButtons) {
             initButton(left_ICN_arrow);
@@ -307,14 +307,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void findObstacles() {
         obstacles = new AppCompatImageView[][]{
-                {findViewById(R.id.obstacle_IMG_pos_00),
+                {
+                        findViewById(R.id.obstacle_IMG_pos_00),
                         findViewById(R.id.obstacle_IMG_pos_01),
                         findViewById(R.id.obstacle_IMG_pos_02),
                         findViewById(R.id.obstacle_IMG_pos_03),
                         findViewById(R.id.obstacle_IMG_pos_04),
                 },
 
-                {findViewById(R.id.obstacle_IMG_pos_10),
+                {
+                        findViewById(R.id.obstacle_IMG_pos_10),
                         findViewById(R.id.obstacle_IMG_pos_11),
                         findViewById(R.id.obstacle_IMG_pos_12),
                         findViewById(R.id.obstacle_IMG_pos_13),
@@ -322,7 +324,8 @@ public class MainActivity extends AppCompatActivity {
 
                 },
 
-                {findViewById(R.id.obstacle_IMG_pos_20),
+                {
+                        findViewById(R.id.obstacle_IMG_pos_20),
                         findViewById(R.id.obstacle_IMG_pos_21),
                         findViewById(R.id.obstacle_IMG_pos_22),
                         findViewById(R.id.obstacle_IMG_pos_23),
@@ -373,14 +376,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void findCoins() {
         coins = new AppCompatImageView[][]{
-                {findViewById(R.id.coin_IMG_pos_00),
+                {
+                        findViewById(R.id.coin_IMG_pos_00),
                         findViewById(R.id.coin_IMG_pos_01),
                         findViewById(R.id.coin_IMG_pos_02),
                         findViewById(R.id.coin_IMG_pos_03),
                         findViewById(R.id.coin_IMG_pos_04),
                 },
 
-                {findViewById(R.id.coin_IMG_pos_10),
+                {
+                        findViewById(R.id.coin_IMG_pos_10),
                         findViewById(R.id.coin_IMG_pos_11),
                         findViewById(R.id.coin_IMG_pos_12),
                         findViewById(R.id.coin_IMG_pos_13),
@@ -388,7 +393,8 @@ public class MainActivity extends AppCompatActivity {
 
                 },
 
-                {findViewById(R.id.coin_IMG_pos_20),
+                {
+                        findViewById(R.id.coin_IMG_pos_20),
                         findViewById(R.id.coin_IMG_pos_21),
                         findViewById(R.id.coin_IMG_pos_22),
                         findViewById(R.id.coin_IMG_pos_23),

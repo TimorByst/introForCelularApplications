@@ -11,5 +11,6 @@ public class MyApp extends Application {
         super.onCreate();
 
         MySignal.init(this);
+        MySharedPreferences.init(this);
     }
 }

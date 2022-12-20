@@ -26,11 +26,6 @@ public class MyAccelerometerDetector {
     private final int Y = 1;
     private final int Z = 2;
 
-
-    public Callback_moveCar getCallback_moveCar() {
-        return callback_moveCar;
-    }
-
     public MyAccelerometerDetector(Context context, Callback_moveCar callback_moveCar) {
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -68,8 +63,6 @@ public class MyAccelerometerDetector {
                     callback_moveCar.changeSpeed(startingOrientation[Z], currentOrientation[Z]);
                 }
             }
-
-
         }
 
         @Override
@@ -89,55 +82,3 @@ public class MyAccelerometerDetector {
         sensorManager.unregisterListener(sensorEventListener);
     }
 }
-
-
-//import android.hardware.Sensor;
-//        import android.hardware.SensorEvent;
-//        import android.hardware.SensorEventListener;
-//        import android.hardware.SensorManager;
-//
-//public class TiltPanDetector implements SensorEventListener {
-//    private static final int SENSITIVITY = 2;
-//
-//    private SensorManager sensorManager;
-//    private Sensor accelerometer;
-//
-//    private float[] startingOrientation = new float[3];
-//    private boolean firstUpdate = true;
-//
-//    public TiltPanDetector(SensorManager sensorManager) {
-//        this.sensorManager = sensorManager;
-//        this.accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-//    }
-//
-//    public void start() {
-//        // Get the starting orientation of the phone
-//        SensorManager.getOrientation(startingOrientation);
-//        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
-//    }
-//
-//    public void stop() {
-//        sensorManager.unregisterListener(this);
-//    }
-//
-//    @Override
-//    public void onSensorChanged(SensorEvent event) {
-//        if (firstUpdate) {
-//            // Skip the first update to avoid false tilt or pan
-//            firstUpdate = false;
-//            return;
-//        }
-//
-//        float x = event.values[0];
-//        float y = event.values[1];
-//
-//        if (Math.abs(x) > SENSITIVITY || Math.abs(y) > SENSITIVITY) {
-//            // Handle tilt or pan
-//        }
-//    }
-//
-//    @Override
-//    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-//        // Not used in this example
-//    }
-//}

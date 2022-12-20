@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#E9BCBABA"
     android:layoutDirection="rtl"
-    tools:context=".MainActivity">
+    tools:context=".ActivityGame">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/main_IMG_lanes"

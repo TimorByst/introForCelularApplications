@@ -3,13 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7962E195">
+    android:background="#794B4E4C"
+    >
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/menu_IMG_highway"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Crash or Cash"
-        android:textColor="#3F51B5"
+        android:text="Cash or Crash"
+        android:textColor="#E6677A"
         android:textSize="40sp"
         android:lines="2"
         android:layout_centerHorizontal="true"
@@ -29,7 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Arrows Fast"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:textColor="#E8685E"
+            android:background="@android:color/transparent"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/menu_BTN_arrows_slow"
             android:layout_width="wrap_content"
@@ -37,7 +45,9 @@
             android:layout_weight="1"
             android:text="Arrows Slow"
             android:layout_below="@id/menu_BTN_arrows_fast"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:textColor="#E8685E"
+            android:background="@android:color/transparent"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/menu_BTN_sensors"
@@ -46,7 +56,9 @@
             android:layout_weight="1"
             android:text="Sensors"
             android:layout_below="@id/menu_BTN_arrows_slow"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:textColor="#E8685E"
+            android:background="@android:color/transparent"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/menu_BTN_records"
@@ -55,7 +67,9 @@
             android:layout_weight="1"
             android:text="Records"
             android:layout_below="@id/menu_BTN_sensors"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:textColor="#E8685E"
+            android:background="@android:color/transparent"/>
 
     </RelativeLayout>
 

@@ -6,10 +6,10 @@ import java.util.TimerTask;
 public class MyTicker {
 
     private Timer timer = new Timer();
-    private MainActivity.CallbackTimer callbackTimer;
+    private ActivityGame.CallbackTimer callbackTimer;
     private boolean isRunning = false;
 
-    public MyTicker(MainActivity.CallbackTimer callbackTimer){
+    public MyTicker(ActivityGame.CallbackTimer callbackTimer){
         this.callbackTimer = callbackTimer;
     }
     public boolean isRunning(){return isRunning;}
