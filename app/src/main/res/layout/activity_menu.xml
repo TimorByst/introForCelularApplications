@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#794B4E4C"
+    >
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/menu_IMG_highway"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cash or Crash"
+        android:textColor="#E6677A"
+        android:textSize="40sp"
+        android:lines="2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/main_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/menu_BTN_arrows_fast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Arrows Fast"
+            android:layout_centerHorizontal="true"
+            android:textColor="#E8685E"
+            android:background="@android:color/transparent"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/menu_BTN_arrows_slow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Arrows Slow"
+            android:layout_below="@id/menu_BTN_arrows_fast"
+            android:layout_centerHorizontal="true"
+            android:textColor="#E8685E"
+            android:background="@android:color/transparent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/menu_BTN_sensors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sensors"
+            android:layout_below="@id/menu_BTN_arrows_slow"
+            android:layout_centerHorizontal="true"
+            android:textColor="#E8685E"
+            android:background="@android:color/transparent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/menu_BTN_records"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Records"
+            android:layout_below="@id/menu_BTN_sensors"
+            android:layout_centerHorizontal="true"
+            android:textColor="#E8685E"
+            android:background="@android:color/transparent"/>
+
+    </RelativeLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="crated by Timor B"
+        android:textSize="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>

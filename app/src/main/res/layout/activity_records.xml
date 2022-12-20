@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3B4B4"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <FrameLayout
+        android:id="@+id/activity_LAY_records"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#C9DF63"
+        />
+
+    <FrameLayout
+        android:id="@+id/activity_LAY_maps"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#ABC7EA"/>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
